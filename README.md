@@ -5,6 +5,7 @@ framer-motion을 활용한 갤러리, 캐러셀 구현
 ## 배포 주소
 
 https://sije-test-svhl.vercel.app/
+
 ※ Unsplash 데모 API를 활용하여 시간당 50건의 요청 가능, 만약 이미지가 출력되지 않는다면 충분한 시간 이후에 다시 방문해 주세요.
 
 ## 사용 스택
