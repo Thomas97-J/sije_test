@@ -2,7 +2,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
 import XButton from "./XButton";
 
-function DetailView({ selectedImage, handleDetailviewClose }) {
+function DetailView({
+  selectedImage,
+  handleDetailviewClose,
+}: {
+  selectedImage: UnsplashImage | null;
+  handleDetailviewClose: () => void;
+}) {
   return (
     <AnimatePresence>
       {selectedImage && (
@@ -35,16 +41,37 @@ function DetailView({ selectedImage, handleDetailviewClose }) {
 
 const DetailViewWrapper = styled(motion.div)`
   display: flex;
-  position: fixed;
   justify-content: flex-end;
+  align-items: center;
+  position: fixed;
   top: 60px;
-  width: calc(100vw - 120px);
-  max-height: calc(100vh - 120px);
-  z-index: 1001;
-  overflow-y: scroll;
+
+  background-color: #1f1f1f;
   border-radius: 8px;
+  z-index: 1001;
+
+  @media (max-width: 480px) {
+    top: 30px;
+  }
+`;
+const DetailBody = styled(motion.div)`
+  display: flex;
+  position: relative;
+
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  border-radius: 8px;
+  width: calc(100vw - 120px);
+  height: calc(100vh - 120px);
+
+  @media (max-width: 480px) {
+    width: calc(100vw - 20px);
+    height: calc(100vh - 120px);
+  }
+
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -63,20 +90,10 @@ const DetailViewWrapper = styled(motion.div)`
   &::-webkit-scrollbar-corner {
     background: transparent;
   }
-`;
-const DetailBody = styled(motion.div)`
-  display: flex;
-  position: relative;
-
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: fit-content;
-
   img {
     object-fit: cover;
     width: 100%;
-    height: 100%;
+    height: fit-content;
   }
 `;
 const Background = styled(motion.div)`
