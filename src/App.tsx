@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useUnsplashInfiniteQuery } from "./hooks/useUnsplashInfiniteQuery";
 import ThumbnailCard from "./components/ThumbnailCard";
 import styled from "styled-components";

@@ -11,7 +11,7 @@ export const useUnsplashInfiniteQuery = () => {
     useInfiniteQuery({
       queryKey: ["unsplashPhotos"],
       queryFn: handleGetPhoto,
-      getNextPageParam: (lastPage, pages) => {
+      getNextPageParam: (_, pages) => {
         return pages.length + 1;
       },
       initialPageParam: 1,
