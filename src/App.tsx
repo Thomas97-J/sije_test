@@ -7,7 +7,7 @@ import CarouselSingle from "./components/CarouselSingle";
 import LoadingSpinner from "./components/LoadingSpinner";
 
 function App() {
-  const { ref, data, isLoading } = useUnsplashInfiniteQuery();
+  const { ref, error, data, isLoading } = useUnsplashInfiniteQuery();
   const firstFiveImages = data?.pages[0]?.slice(0, 5) || [];
   const [selectedImage, setSelectedImage] = useState<UnsplashImage | null>(
     null
@@ -33,12 +33,24 @@ function App() {
     setSelectedImage(image);
   }
 
+  if (error) {
+    return (
+      <AppWrapper>
+        {error.message}
+        <br /> 잠시 후 다시 시도하세요.
+      </AppWrapper>
+    );
+  }
   return (
     <AppWrapper>
-      <CarouselSingle
-        firstFiveImages={firstFiveImages}
-        handleDetailviewOpen={handleDetailviewOpen}
-      />
+      {firstFiveImages.length ? (
+        <CarouselSingle
+          firstFiveImages={firstFiveImages}
+          handleDetailviewOpen={handleDetailviewOpen}
+        />
+      ) : (
+        ""
+      )}
       {isLoading && <LoadingSpinner />}
 
       <Gallery>

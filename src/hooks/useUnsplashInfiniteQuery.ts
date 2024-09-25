@@ -7,16 +7,22 @@ export const useUnsplashInfiniteQuery = () => {
   const { ref, inView } = useInView();
   const [isLoading, setIsLoading] = useState(true);
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
-    useInfiniteQuery({
-      queryKey: ["unsplashPhotos"],
-      queryFn: handleGetPhoto,
-      getNextPageParam: (_, pages) => {
-        return pages.length + 1;
-      },
-      initialPageParam: 1,
-      staleTime: Infinity,
-    });
+  const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    status,
+  } = useInfiniteQuery({
+    queryKey: ["unsplashPhotos"],
+    queryFn: handleGetPhoto,
+    getNextPageParam: (_, pages) => {
+      return pages.length + 1;
+    },
+    initialPageParam: 1,
+    staleTime: Infinity,
+  });
 
   useEffect(() => {
     if (data) {
@@ -38,6 +44,7 @@ export const useUnsplashInfiniteQuery = () => {
   return {
     ref,
     data,
+    error,
     isLoading,
     fetchNextPage,
     hasNextPage,
